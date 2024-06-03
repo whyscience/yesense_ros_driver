@@ -2,27 +2,27 @@
 
 ## Introduction
 
-This is a ros driver for yesense imu sensor.
+This is a ros driver for yesense imu sensor for ROS2 
 
 ## Install Dependence
 
-Asume that you are using **ROS kinect** 
+Assume that you are using **ROS Humble** 
 
 ```shell
-sudo apt install ros-kinetic-serial-utils ros-kinetic-serial
+sudo apt install ros-humble-serial-driver
 ```
 
 ## Build
 
 ```
 cd yesense_ws/
-catkin_make
+colcon build --symlink-install
 ```
 
 ## Usage
 
 ```shell
-roslaunch yesense_imu yesense.launch
+ros2 launch yesense_imu yesense.launch.py
 ```
 
 **note: **change the params in launch to your own

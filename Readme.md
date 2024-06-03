@@ -9,7 +9,8 @@ This is a ros driver for yesense imu sensor for ROS2
 Assume that you are using **ROS Humble** 
 
 ```shell
-sudo apt install ros-humble-serial-driver
+#sudo apt install ros-humble-serial-driver
+git clone https://github.com/RoverRobotics-forks/serial-ros2.git
 ```
 
 ## Build

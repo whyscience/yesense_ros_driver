@@ -8,8 +8,9 @@ find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(tf2 REQUIRED)
+#https://github.com/RoverRobotics-forks/serial-ros2
 find_package(tf2_ros REQUIRED)
-find_package(serial_driver REQUIRED)
+find_package(serial REQUIRED)
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
@@ -28,7 +29,7 @@ ament_target_dependencies(yesense_imu_node
         std_msgs
         tf2
         tf2_ros
-        serial_driver
+        serial
 )
 
 add_executable(example src/example.c src/analysis_data.c)
@@ -39,7 +40,7 @@ ament_target_dependencies(example
         std_msgs
         tf2
         tf2_ros
-        serial_driver
+        serial
 )
 
 ## Install executables and libraries

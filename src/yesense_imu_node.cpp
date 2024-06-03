@@ -1,6 +1,6 @@
 #include <geometry_msgs/msg/quaternion.hpp>
 #include <rclcpp/rclcpp.hpp>
-#include <serial_driver/serial_driver.hpp>
+#include "serial/serial.h"
 #include <sensor_msgs/msg/imu.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <sensor_msgs/msg/temperature.hpp>
@@ -30,7 +30,10 @@ void publish_imu(rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr imu_pub,
 
     tf2::Quaternion q;
     q.setRPY(imu_data.roll / 180.0 * M_PI, imu_data.pitch / 180.0 * M_PI, imu_data.yaw / 180.0 * M_PI);
-    g_imu.orientation = tf2_ros::toMsg(q);
+    g_imu.orientation.w = q.w();
+    g_imu.orientation.x = q.x();
+    g_imu.orientation.y = q.y();
+    g_imu.orientation.z = q.z();
 
     g_imu.angular_velocity.x = imu_data.angle_x / 180.0 * M_PI;
     g_imu.angular_velocity.y = imu_data.angle_y / 180.0 * M_PI;
@@ -53,7 +56,7 @@ void publish_imu(rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr imu_pub,
 }
 
 int main(int argc, char **argv) {
-    drivers::serial_driver::SerialDriver ser();
+    serial::Serial ser;
     std::string port;
     int baud_rate = 460800;
     int buf_size = 1000;

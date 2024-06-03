@@ -23,7 +23,7 @@
   <depend>std_msgs</depend>
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
-  <depend>serial_driver</depend>
+  <depend>serial</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

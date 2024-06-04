@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a ros driver for yesense imu sensor for ROS2 
+This is a ros driver for yesense imu sensor on ROS2 
 
 ## Install Dependence
 

@@ -68,9 +68,9 @@ int main(int argc, char **argv) {
     double linear_acceleration_stddev;
     double angular_velocity_stddev;
     double orientation_stddev;
-    uint8_t last_received_message_number;
-    bool received_message = false;
-    int data_packet_start;
+    // uint8_t last_received_message_number;
+    // bool received_message = false;
+    // int data_packet_start;
 
     tf2::Quaternion orientation;
     tf2::Quaternion zero_orientation;
@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
     std::string read;
     PARSE_STATES state = FIND_HEAD_0;
     int data_len = 0;
-    int head_ind = 0;
+    // int head_ind = 0;
 
     while (rclcpp::ok()) {
         try {
@@ -134,7 +134,7 @@ int main(int argc, char **argv) {
                 if (ser.available()) {
                     read = ser.read(ser.available());
 
-                    if (input.size() > buf_size) {
+                    if ((int) input.size() > buf_size) {
                         RCLCPP_WARN(node->get_logger(), "input.size() > buf_size: %ld/%d", input.size(), buf_size);
                         input.clear();
                         state = FIND_HEAD_0;
@@ -164,7 +164,7 @@ int main(int argc, char **argv) {
                             }
                         } else if (state == FIND_END) {
                             input += read.at(i);
-                            if (input.size() >= data_len) {
+                            if ((int) input.size() >= data_len) {
                                 std::string sentence = input;
                                 int e = analysis_data((unsigned char *) sentence.data(), sentence.size());
                                 if (e != analysis_ok) {
